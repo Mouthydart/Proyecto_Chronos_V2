@@ -1,4 +1,4 @@
-#Seguridad (hashear contrasena, crear token, verificar tokens)
+#Seguridad (hashear contrasena, crear token, verificar token)
 
 from datetime import datetime, timedelta
 from typing import Optional
