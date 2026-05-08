@@ -23,6 +23,7 @@ import EditFinance from '../views/editSecFin.vue'
 import EditLeisure from '../views/editSecLei.vue'
 import UserProfile from '../views/UserProfile.vue'
 import { requireAuth, redirectIfAuthenticated } from './guards.js'
+import SectionDiary from '../views/sectionDiary.vue'
 
 const routes = [
   { path: '/', component: LoginView, beforeEnter: redirectIfAuthenticated }, // La vista de Login
@@ -48,6 +49,7 @@ const routes = [
   { path: '/editFinance/:id', name: 'EditFinance', component: EditFinance, beforeEnter: requireAuth },// Editar registro finanzas
   { path: '/editLeisure/:id', name: 'EditLeisure', component: EditLeisure, beforeEnter: requireAuth },// Editar registro tiempo libre
   { path: '/profile', component: UserProfile, beforeEnter: requireAuth }, // Perfil del usuario
+  { path: '/salud/diary', component: SectionDiary, beforeEnter: requireAuth}, // Seccion de diario
 ]
 
 const router = createRouter({
