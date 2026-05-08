@@ -1,12 +1,8 @@
 <template>
     <div class="flex min-h-screen">
-
         <AppSidebar />
-
         <main class="flex-1 p-8 bg-white overflow-y-auto">
-
             <div class="flex flex-col">
-
                 <div class="w-full flex justify-center items-center mb-6">
                     <div
                         class="text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">
