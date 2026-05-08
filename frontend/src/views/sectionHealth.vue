@@ -50,7 +50,7 @@
     </div>
 
       <!-- Icono de Inteligencia Artificial - Esquina inferior derecha -->
-      <div class="fixed bottom-8 right-8 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl" title="Inteligencia Artificial">
+      <div @click="diary"  class="fixed bottom-8 right-8 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl" title="Inteligencia Artificial">
         🤖
       </div>
 
@@ -67,6 +67,7 @@ import { useRouter } from 'vue-router';
 import AppSidebar from '../components/appSideBar.vue'; 
 import DynamicTable from '../components/dynamicTable.vue'; 
 import { healthService } from '../services/healthService.js';
+import SectionDiary from './sectionDiary.vue';
 
 const router = useRouter();
 const healthColumns = ref([
@@ -165,4 +166,8 @@ const prevPage = () => {
         currentPage.value--;
     }
 };
+
+const diary = () => {
+    router.push('/salud/diary');
+}
 </script>
