@@ -114,19 +114,42 @@
 <script setup>
 import { ref, computed } from 'vue'
 import AppSidebar from '../components/appSideBar.vue'
+import { diaryService } from '../services/diaryService'
 
 const diaryEntries = ref([])
 const newEntry = ref('')
 
-const addEntry = () => {
+const selectedDay = ref(null)
+const selectedDayMessage = ref('')
+
+const addEntry = async () => {
   if (!newEntry.value.trim()) return
 
-  diaryEntries.value.push({
-    text: newEntry.value,
-    date: new Date()
-  })
+  try {
 
-  newEntry.value = ''
+    const userText = newEntry.value
+
+    // guardar en backend
+    const response = await diaryService.saveEntry(userText)
+
+    // agregar al chat
+    diaryEntries.value.push({
+      text: userText,
+      ai_phrase: response.ai_phrase,
+      date: new Date()
+    })
+
+    // mostrar mensaje IA
+    selectedDayMessage.value = response.ai_phrase
+
+    // limpiar input
+    newEntry.value = ''
+
+  } catch (error) {
+
+    console.error('Error guardando entrada:', error)
+
+  }
 }
 
 const today = new Date()
@@ -147,12 +170,37 @@ const firstDayOfMonth = computed(() =>
   new Date(today.getFullYear(), today.getMonth(), 1).getDay()
 )
 
-const selectedDay = ref(null)
-const selectedDayMessage = ref('')
+const selectDay = async (day) => {
 
-const selectDay = (day) => {
   selectedDay.value = day
 
-  selectedDayMessage.value = `Reflexión del día ${day}`
+  const month = String(today.getMonth() + 1).padStart(2, '0')
+  const formattedDay = String(day).padStart(2, '0')
+
+  const fullDate = `${today.getFullYear()}-${month}-${formattedDay}`
+
+  try {
+
+    const response = await diaryService.getEntryByDate(fullDate)
+
+    // mensaje del calendario
+    selectedDayMessage.value = response.ai_phrase
+
+    // cargar conversación en el chat
+    diaryEntries.value = [
+      {
+        text: response.content,
+        ai_phrase: response.ai_phrase,
+        date: fullDate
+      }
+    ]
+
+  } catch (error) {
+
+    console.error('Error obteniendo entrada:', error)
+
+    selectedDayMessage.value = 'Error cargando mensaje'
+
+  }
 }
 </script>
