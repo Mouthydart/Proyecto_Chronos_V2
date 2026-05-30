@@ -83,7 +83,10 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_info(current_user: dict = Depends(get_current_user)):
-    return UserResponse(**current_user, id=str(current_user["_id"]))
+    # Crear una copia del usuario y asegurar que el id sea string
+    user_data = current_user.copy()
+    user_data["id"] = str(user_data.get("_id", ""))
+    return UserResponse(**user_data)
 
 @router.put("/me", response_model=UserResponse)
 async def update_current_user(
@@ -127,4 +130,10 @@ async def update_current_user(
     
     # Obtener usuario actualizado
     updated_user = users_collection.find_one({"_id": current_user["_id"]})
-    return UserResponse(**updated_user, id=str(updated_user["_id"]))
+    # Crear una copia del usuario y asegurar que el id sea string
+    user_data = updated_user.copy()
+    user_data["id"] = str(user_data.get("_id", ""))
+    return UserResponse(**user_data)
+
+
+

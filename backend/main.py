@@ -14,10 +14,19 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan)
 
-# Configurar CORS
+# Configurar CORS - debe estar antes de los routers
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://localhost:8001",
+    "http://127.0.0.1:8001",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Temporal: permitir todos los orígenes
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,8 +41,12 @@ app.include_router(leisure.router, prefix="/api", tags=["leisure"])
 
 @app.get("/")
 async def root():
-    return {"message": "Chronos API is running"}
+    return {"message": "Chronos API is running", "cors": "enabled"}
+
+@app.options("/api/auth/register")
+async def options_register():
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8001, reload=True)

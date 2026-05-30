@@ -223,7 +223,7 @@ const login = async () => {
         // Redirigir al home después del login exitoso
         router.push('/home')
     } catch (error) {
-        errorMessage.value = error.detail || 'Error al iniciar sesión. Verifica tus credenciales.'
+        errorMessage.value = error?.response?.data?.detail || error?.message || 'Error al iniciar sesión. Verifica tus credenciales.'
         console.error('Error de login:', error)
     } finally {
         loading.value = false

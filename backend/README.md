@@ -46,7 +46,16 @@ ACCESS_TOKEN_EXPIRE_MINUTES=30
 python main.py
 ```
 
-El servidor correrá en: **http://localhost:8000**
+El servidor correrá en: **http://localhost:8001**
+
+## Levantar Frontend
+
+```bash
+cd ../frontend
+npm run dev
+```
+
+El frontend correrá en: **http://localhost:5173**
 
 ## 📚 Documentación API
 
