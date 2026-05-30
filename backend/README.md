@@ -102,4 +102,58 @@ Authorization: Bearer <tu_token>
 - priority, due_date, status
 
 
-# Pipeline CI/CD configurado
+# Pipeline CI/CD configuracion 
+
+- Intalar la Herramientas flake8 y pytest 
+ 
+  pip install flake8 pytest
+
+- Actulizar las dependencias del proyecto
+
+  pip freeze > requirements.txt  #generar lista exacta de dependencias
+
+- Crear carpeta para pruebas
+
+  test/test_basic.py
+
+  def test_basic():
+    assert True
+
+- Crear carpetas del workflow
+
+  .github/workflows/ci.yml 
+
+  name: CI Pipeline
+
+ on:
+  pull_request:
+    branches:
+      - main
+
+ jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ejecutar lint
+        run: |
+          flake8 .
+
+      - name: Ejecutar pruebas
+        run: |
+          pytest
+
+- Subir los cambios realizados a github
