@@ -1,4 +1,4 @@
-# Chronos Backend API
+# Chronos Backend API Configuracion
 
 Backend para la aplicación Chronos construido con FastAPI y MongoDB.
 
@@ -100,3 +100,6 @@ Authorization: Bearer <tu_token>
 - title, description, category
 - category (deportes/lectura/videojuegos/social/viajes/otros)
 - priority, due_date, status
+
+
+# Pipeline CI/CD configurado
