@@ -35,3 +35,9 @@ jobs:
       - name: Ejecutar pruebas
         run: |
           pytest
+
+      - name: Ejecutar pruebas
+        env:
+          PYTHONPATH: backend
+        run: |
+          pytest
