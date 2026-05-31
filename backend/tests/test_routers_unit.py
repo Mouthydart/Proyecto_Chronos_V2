@@ -172,7 +172,7 @@ class MockAcademyPydantic:
             k: v
             for k, v in self.__dict__.items()
             if not k.startswith("_")
-            }
+        }
 
     def model_dump(self, *args, **kwargs):
         return self.dict()
@@ -233,7 +233,7 @@ def test_surgical_academy_coverage_sync():
             asyncio.run(
                 academy_router.get_academy_records(
                     current_user=current_user_mock
-                    )
+                )
             )
         except Exception:
             pass
@@ -282,7 +282,7 @@ class MockGenericPydantic:
             k: v
             for k, v in self.__dict__.items()
             if not k.startswith("_")
-            }
+        }
 
     def model_dump(self, *args, **kwargs):
         return self.dict()
@@ -385,8 +385,8 @@ def test_surgical_triple_routers_sync():
                     fn_create(
                         payload_generic,
                         current_user=current_user_mock
-                        )
                     )
+                )
             except Exception:
                 pass
 
@@ -400,7 +400,7 @@ def test_surgical_triple_routers_sync():
                     fn_get_one(
                         record_id=VALID_HEX_ID,
                         current_user=current_user_mock
-                        )
+                    )
                 )
             except Exception:
                 pass
@@ -441,7 +441,7 @@ def test_surgical_triple_routers_sync():
                     fn_del(
                         record_id=VALID_HEX_ID,
                         current_user=current_user_mock
-                        )
+                    )
                 )
             except Exception:
                 pass
