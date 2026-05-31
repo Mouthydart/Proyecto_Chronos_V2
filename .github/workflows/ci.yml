@@ -37,7 +37,6 @@ jobs:
           pytest
 
       - name: Ejecutar pruebas
-        env:
-          PYTHONPATH: backend
+        working-directory: backend
         run: |
-          pytest backend/ --import-mode=importlib
+          python -m pytest
