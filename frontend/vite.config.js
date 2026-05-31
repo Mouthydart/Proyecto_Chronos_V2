@@ -7,7 +7,10 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
   coverage: {
-    reporter: ['text', 'html'],
+    provider: 'v8', 
+    reporter: ['text', 'html', 'json-summary'],
+    include: ['src/components/**/*.vue'],
+      lean: true
   }
   }
   
