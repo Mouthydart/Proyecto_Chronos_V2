@@ -35,8 +35,3 @@ jobs:
       - name: Ejecutar pruebas
         run: |
           pytest
-
-      - name: Ejecutar pruebas
-        working-directory: backend
-        run: |
-          python -m pytest
