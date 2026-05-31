@@ -1,7 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 import mongomock
-from backend.main import app
+from main import app
 from app.database.mongodb import mongodb
 
 @pytest.fixture(scope="session", autouse=True)
