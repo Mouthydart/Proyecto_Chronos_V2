@@ -40,4 +40,4 @@ jobs:
         env:
           PYTHONPATH: backend
         run: |
-          pytest
+          pytest backend/ --import-mode=importlib
