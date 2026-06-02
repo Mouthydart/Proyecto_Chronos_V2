@@ -21,7 +21,12 @@ jobs:
       - name: Instalar dependencias
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r backend/requirements.txt
+
+      - name: Verificar complementos
+        run: |
+          pip show httpx
+          pip show mongomock
 
       - name: Ejecutar lint
         run: |

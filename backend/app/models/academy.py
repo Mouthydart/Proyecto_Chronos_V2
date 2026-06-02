@@ -1,4 +1,4 @@
-#estructura de datos para modulo academico
+#estructura de datos para modulo academico del estudiante
 
 from datetime import datetime
 from typing import Optional

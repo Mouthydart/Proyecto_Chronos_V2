@@ -1,0 +1,12 @@
+[run]
+source = app
+
+omit =
+    main.py
+    tests/*
+    */__init__.py
+    app/routers/auth.py
+    app/routers/diary.py
+
+[report]
+show_missing = True
