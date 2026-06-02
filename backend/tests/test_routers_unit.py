@@ -317,7 +317,7 @@ def test_surgical_triple_routers_sync():
 
     targets = [
         (
-            "app.routers.finance.mongodb",
+            "backend.app.routers.finance.mongodb",
             fin_mod,
             "finance",
             "create_finance",
@@ -327,7 +327,7 @@ def test_surgical_triple_routers_sync():
             "delete_finance_record",
         ),
         (
-            "app.routers.health.mongodb",
+            "backend.app.routers.health.mongodb",
             hth_mod,
             "health",
             "create_health",
@@ -337,7 +337,7 @@ def test_surgical_triple_routers_sync():
             "delete_health_record",
         ),
         (
-            "app.routers.leisure.mongodb",
+            "backend.app.routers.leisure.mongodb",
             lsr_mod,
             "leisure",
             "create_leisure",
@@ -445,3 +445,4 @@ def test_surgical_triple_routers_sync():
                 )
             except Exception:
                 pass
+
