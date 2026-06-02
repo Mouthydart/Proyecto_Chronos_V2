@@ -1,9 +1,12 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'https://chronos-2xg1.onrender.com'
 //const API_BASE_URL = 'http://localhost:8000/api'
 // BIEN (Detecta automáticamente si estás en producción o en local)
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+// Detecta automáticamente local o producción
+const API_URL =
+  import.meta.env.VITE_API_URL || "https://chronos-2xg1.onrender.com/api";
+
+export default API_URL;
 
 
 // Crear instancia de Axios con configuración base
