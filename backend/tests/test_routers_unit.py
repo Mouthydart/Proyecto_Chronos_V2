@@ -185,7 +185,7 @@ def test_surgical_academy_coverage_sync():
     """
     import backend.app.routers.academy as academy_router
 
-    with patch("app.routers.academy.mongodb") as mock_mongodb_shared:
+    with patch("backend.app.routers.academy.mongodb") as mock_mongodb_shared:
         # 1. Armado del entorno simulado interno
         mock_db = MagicMock()
         mock_collection = MagicMock()

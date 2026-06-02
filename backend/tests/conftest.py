@@ -7,19 +7,18 @@ from backend.app.database.mongodb import mongodb
 
 @pytest.fixture(scope="session", autouse=True)
 def mock_mongodb():
-    """
-    Mock global de MongoDB para evitar conexión real.
-    """
     mock_db = MagicMock()
 
-    # Simular colecciones
-    mock_db.users = MagicMock()
-    mock_db.academy = MagicMock()
-    mock_db.finance = MagicMock()
-    mock_db.health = MagicMock()
-    mock_db.leisure = MagicMock()
+    mock_users = MagicMock()
 
-    # Reemplazar get_database
+    # 👇 SIMULA USUARIO REAL
+    mock_users.find_one.return_value = {
+        "email": "test@test.com",
+        "hashed_password": "$2b$12$KIXfakehashvaluehere"
+    }
+
+    mock_db.users = mock_users
+
     mongodb.get_database = lambda: mock_db
 
     yield mock_db
