@@ -1,37 +1,31 @@
 import pytest
 from fastapi.testclient import TestClient
-import mongomock
-from main import app
-from app.database.mongodb import mongodb
+from unittest.mock import MagicMock
+from backend.main import app
+from backend.app.database.mongodb import mongodb
+from backend.app.auth.auth import get_password_hash  # 👈 IMPORTANTE
+
 
 @pytest.fixture(scope="session", autouse=True)
 def mock_mongodb():
-    """
-    Este fixture simula la base de datos MongoDB en memoria usando mongomock.
-    Evita que las pruebas escriban en tu base de datos real.
-    """
-    # Si tu clase 'mongodb' expone el cliente interno (por ejemplo, mongodb.client),
-    # podemos reemplazarlo por el cliente simulado de mongomock.
-    # Nota: Si este mock te da problemas más adelante, ajustaremos según cómo esté programado app/database/mongodb.py
-    mock_client = mongomock.MongoClient()
-    
-    # Intentamos inyectar el cliente simulado en tu objeto de base de datos
-    original_client = getattr(mongodb, 'client', None)
-    mongodb.client = mock_client
-    
-    yield mock_client
-    
-    # Al terminar los tests, restauramos el estado original si es necesario
-    if original_client:
-        mongodb.client = original_client
+    mock_db = MagicMock()
+
+    mock_users = MagicMock()
+
+    # ✅ HASH REAL BCRYPT (NO FAKE)
+    mock_users.find_one.return_value = {
+        "email": "test@test.com",
+        "hashed_password": get_password_hash("password123")
+    }
+
+    mock_db.users = mock_users
+
+    mongodb.get_database = lambda: mock_db
+
+    yield mock_db
+
 
 @pytest.fixture(scope="module")
 def client():
-    """
-    Crea un TestClient de FastAPI que simula peticiones HTTP.
-    Se destruye al terminar las pruebas del módulo.
-    """
-    # Usamos el TestClient nativo de FastAPI con un bloque 'with' 
-    # para que se ejecute el código dentro de tu 'lifespan' (startup y shutdown)
     with TestClient(app) as test_client:
         yield test_client

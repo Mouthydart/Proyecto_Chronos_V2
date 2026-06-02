@@ -1,10 +1,15 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'http://localhost:8000/api'
+const API_BASE_URL = 'https://chronos-2xg1.onrender.com'
+//const API_BASE_URL = 'http://localhost:8000/api'
+// BIEN (Detecta automáticamente si estás en producción o en local)
+const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+
 
 // Crear instancia de Axios con configuración base
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  //baseURL: API_BASE_URL,
+  baseURL:`${API_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },

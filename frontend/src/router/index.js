@@ -50,7 +50,7 @@ const routes = [
   { path: '/editFinance/:id', name: 'EditFinance', component: EditFinance, beforeEnter: requireAuth },// Editar registro finanzas
   { path: '/editLeisure/:id', name: 'EditLeisure', component: EditLeisure, beforeEnter: requireAuth },// Editar registro tiempo libre
   { path: '/profile', component: UserProfile, beforeEnter: requireAuth }, // Perfil del usuario
-  { path: '/salud/diary', component: SectionDiary, beforeEnter: requireAuth }, //Mi diario IA
+  { path: '/salud/diary', component: SectionDiary, beforeEnter: requireAuth}, // Seccion de diario
 ]
 
 const router = createRouter({

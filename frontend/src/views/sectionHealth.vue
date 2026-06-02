@@ -50,7 +50,7 @@
     </div>
 
       <!-- Icono de Inteligencia Artificial - Esquina inferior derecha -->
-      <div @click="diary"  class="fixed bottom-8 right-8 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl" title="Inteligencia Artificial">
+      <div @click="SectionDia" class="fixed bottom-8 right-8 text-2xl cursor-pointer hover:scale-110 transition-transform duration-200 bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl" title="Inteligencia Artificial">
         🤖
       </div>
 
@@ -162,12 +162,12 @@ const nextPage = () => {
 };
 
 const prevPage = () => {
-    if (currentPage.value > 1) {
+    if (currentPage.value > 1) {        
         currentPage.value--;
     }
 };
 
-const diary = () => {
-    router.push('/salud/diary');
+const SectionDia = () => {
+    router.push('/salud/diary')
 }
 </script>

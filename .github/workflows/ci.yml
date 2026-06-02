@@ -8,6 +8,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+  
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
 
     steps:
       - name: Descargar código
@@ -33,5 +36,4 @@ jobs:
           flake8 .
 
       - name: Ejecutar pruebas
-        run: |
-          pytest
+        run: PYTHONPATH=. pytest

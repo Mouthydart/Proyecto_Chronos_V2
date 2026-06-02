@@ -81,12 +81,12 @@ def test_absolute_routers_penetration():
     Recorre dinámicamente las firmas de los métodos
     inyectando los mocks asíncronos.
     """
-    import app.routers.academy as a_mod
-    import app.routers.auth as auth_mod
-    import app.routers.diary as d_mod
-    import app.routers.finance as f_mod
-    import app.routers.health as h_mod
-    import app.routers.leisure as l_mod
+    import backend.app.routers.academy as a_mod
+    import backend.app.routers.auth as auth_mod
+    import backend.app.routers.diary as d_mod
+    import backend.app.routers.finance as f_mod
+    import backend.app.routers.health as h_mod
+    import backend.app.routers.leisure as l_mod
 
     modulos = [d_mod, f_mod, a_mod, l_mod, h_mod, auth_mod]
 
@@ -135,7 +135,7 @@ def test_pure_auth_and_exceptions_coverage():
     Fuerza los bloques Except y las líneas sueltas
     de auth.py y validaciones.
     """
-    from app.auth.auth import (
+    from backend.app.auth.auth import (
         create_access_token,
         get_password_hash,
         verify_password,
@@ -183,9 +183,9 @@ def test_surgical_academy_coverage_sync():
     Ejecuta el entorno usando el bucle síncrono nativo
     para asegurar su ejecución.
     """
-    import app.routers.academy as academy_router
+    import backend.app.routers.academy as academy_router
 
-    with patch("app.routers.academy.mongodb") as mock_mongodb_shared:
+    with patch("backend.app.routers.academy.mongodb") as mock_mongodb_shared:
         # 1. Armado del entorno simulado interno
         mock_db = MagicMock()
         mock_collection = MagicMock()
@@ -293,9 +293,9 @@ def test_surgical_triple_routers_sync():
     Parcha la base de datos global e inyecta
     ejecuciones limpias para los tres enrutadores.
     """
-    import app.routers.finance as fin_mod
-    import app.routers.health as hth_mod
-    import app.routers.leisure as lsr_mod
+    import backend.app.routers.finance as fin_mod
+    import backend.app.routers.health as hth_mod
+    import backend.app.routers.leisure as lsr_mod
 
     VALID_HEX_ID = "64f1c3b5f1d2c3b4e5f6a7b8"
     current_user_mock = {"_id": VALID_HEX_ID,
@@ -317,7 +317,7 @@ def test_surgical_triple_routers_sync():
 
     targets = [
         (
-            "app.routers.finance.mongodb",
+            "backend.app.routers.finance.mongodb",
             fin_mod,
             "finance",
             "create_finance",
@@ -327,7 +327,7 @@ def test_surgical_triple_routers_sync():
             "delete_finance_record",
         ),
         (
-            "app.routers.health.mongodb",
+            "backend.app.routers.health.mongodb",
             hth_mod,
             "health",
             "create_health",
@@ -337,7 +337,7 @@ def test_surgical_triple_routers_sync():
             "delete_health_record",
         ),
         (
-            "app.routers.leisure.mongodb",
+            "backend.app.routers.leisure.mongodb",
             lsr_mod,
             "leisure",
             "create_leisure",
