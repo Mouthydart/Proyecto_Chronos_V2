@@ -135,7 +135,7 @@ def test_pure_auth_and_exceptions_coverage():
     Fuerza los bloques Except y las líneas sueltas
     de auth.py y validaciones.
     """
-    from app.auth.auth import (
+    from backend.app.auth.auth import (
         create_access_token,
         get_password_hash,
         verify_password,

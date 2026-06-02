@@ -3,10 +3,10 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import datetime
 from typing import List
-from app.models.academy import AcademyCreate, AcademyResponse, AcademyUpdate
+from backend.app.models.academy import AcademyCreate, AcademyResponse, AcademyUpdate
 from bson import ObjectId
-from app.database.mongodb import mongodb
-from app.routers.auth import get_current_user
+from backend.app.database.mongodb import mongodb
+from backend.app.routers.auth import get_current_user
 
 router = APIRouter()
 

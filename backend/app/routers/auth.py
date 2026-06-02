@@ -4,9 +4,9 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from datetime import datetime, timedelta
-from app.models.user import UserCreate, UserLogin, UserResponse
-from app.database.mongodb import mongodb
-from app.auth.auth import (
+from backend.app.models.user import UserCreate, UserLogin, UserResponse
+from backend.app.database.mongodb import mongodb
+from backend.app.auth.auth import (
     get_password_hash, 
     verify_password, 
     create_access_token, 

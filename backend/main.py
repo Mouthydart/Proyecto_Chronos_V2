@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from app.database.mongodb import mongodb
-from app.routers import auth, academy, health, finance, leisure, diary
+from backend.app.database.mongodb import mongodb
+from backend.app.routers import auth, academy, health, finance, leisure, diary
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

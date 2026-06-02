@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Body
 from services.ai_service import generate_motivational_phrase
-from app.database.mongodb import mongodb
+from backend.app.database.mongodb import mongodb
 from datetime import datetime
 
 router = APIRouter()
