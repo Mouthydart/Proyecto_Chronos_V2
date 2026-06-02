@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from app.database.mongodb import mongodb
-from app.routers import auth, academy, health, finance, leisure, diary
+from backend.app.database.mongodb import mongodb
+from backend.app.routers import auth, academy, health, finance, leisure, diary
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -37,4 +37,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
