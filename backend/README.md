@@ -50,7 +50,7 @@ El servidor correrá en: **http://localhost:8000**
 
 ## 📚 Documentación API
 
-Una vez iniciado el servidor, visita:
+Una vez iniciado el servidor,se inicia:
 - **Swagger UI**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
 
