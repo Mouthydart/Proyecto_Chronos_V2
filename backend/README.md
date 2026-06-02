@@ -102,7 +102,7 @@ Authorization: Bearer <tu_token>
 - priority, due_date, status
 
 
-# Pipeline CI/CD configuracion 
+# Pipeline CI/CD configuracion GITHUB 
 
 - Intalar la Herramientas flake8 y pytest 
  
