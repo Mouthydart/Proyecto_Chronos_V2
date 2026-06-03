@@ -18,7 +18,7 @@ export const authService = {
       const { access_token } = response.data
       
       // Guardar token
-      localStorage.setItem('token', access_token)
+      localStorage.setItem('token', response.data.access_token)
       
       return response.data
     } catch (error) {

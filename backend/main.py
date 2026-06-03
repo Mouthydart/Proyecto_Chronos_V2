@@ -14,15 +14,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan, redirect_slashes=False)
 
-origins = [
-    "http://localhost:5173",          # Tu Vue.js en local (PC)
-    "http://127.0.0.1:5173",          # Alternativa local # <-- ¡Tu URL real de Vercel!
-    "https://proyecto-chronos-v2.vercel.app/"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,            # <-- Cambiamos el ["*"] por la lista explícita
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
