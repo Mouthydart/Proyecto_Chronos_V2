@@ -1,7 +1,7 @@
 #estructura de datos para los usuarios
 
 from pydantic import BaseModel, EmailStr, Field, field_validator
-from datetime import datetime
+from datetime import date, datetime
 from typing import Optional
 from bson import ObjectId
 
@@ -26,9 +26,13 @@ class UserResponse(UserBase):
     id: Optional[str] = None
     created_at: datetime
     is_active: bool = True
-    birth_date: Optional[datetime] = None
+    birth_date: Optional[date] = None
     location: Optional[str] = None
     profile_picture: Optional[str] = None
+    
+    model_config = {
+        "from_attributes": True
+    }
 
     @field_validator('id', mode='before')
     @classmethod

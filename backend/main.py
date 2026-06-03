@@ -12,17 +12,20 @@ async def lifespan(app: FastAPI):
     # Shutdown
     mongodb.disconnect()
 
-app = FastAPI()
+# Modifica esta línea en tu main.py
+app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan, redirect_slashes=False)
 
+# Configurar CORS de forma segura
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://localhost:5173",          # Tu Vue.js en local (PC)
+    "http://127.0.0.1:5173",          # Alternativa local
+    "https://chronos-copy-v2.vercel.app", # <-- ¡Tu URL real de Vercel!
+    "https://chronos-copy-v2.vercel.app/"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"https://.*\.vercel\.app",
-    allow_origins=origins,
+    allow_origins=origins,            # <-- Cambiamos el ["*"] por la lista explícita
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
