@@ -7,10 +7,10 @@ from backend.app.routers import auth, academy, health, finance, leisure, diary
 #@asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    # mongodb.connect()
+    mongodb.connect()
     yield
     # Shutdown
-    # mongodb.disconnect()
+    mongodb.disconnect()
 
 app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan, redirect_slashes=False)
 
@@ -22,8 +22,8 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],            # <-- Cambiamos el ["*"] por la lista explícita
-    allow_credentials=False,
+    allow_origins=origins,            # <-- Cambiamos el ["*"] por la lista explícita
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
