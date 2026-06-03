@@ -4,13 +4,13 @@ from contextlib import asynccontextmanager
 from backend.app.database.mongodb import mongodb
 from backend.app.routers import auth, academy, health, finance, leisure, diary
 
-@asynccontextmanager
+#@asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    mongodb.connect()
+    # mongodb.connect()
     yield
     # Shutdown
-    mongodb.disconnect()
+    # mongodb.disconnect()
 
 app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan, redirect_slashes=False)
 
