@@ -16,8 +16,7 @@ app = FastAPI(title="Chronos API", version="1.0.0", lifespan=lifespan, redirect_
 
 origins = [
     "http://localhost:5173",          # Tu Vue.js en local (PC)
-    "http://127.0.0.1:5173",          # Alternativa local
-    "https://proyect-chronos-v2.vercel.app", # <-- ¡Tu URL real de Vercel!
+    "http://127.0.0.1:5173",          # Alternativa local # <-- ¡Tu URL real de Vercel!
     "https://proyecto-chronos-v2.vercel.app/"
 ]
 
