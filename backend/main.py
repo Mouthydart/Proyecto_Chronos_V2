@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from backend.app.database.mongodb import mongodb
 from backend.app.routers import auth, academy, health, finance, leisure, diary
 
-#@asynccontextmanager
+@asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
     mongodb.connect()
@@ -45,4 +45,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
