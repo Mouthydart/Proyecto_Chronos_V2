@@ -1,6 +1,6 @@
 #estructura de datos para los usuarios
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, EmailStr,Field,field_validator
 from datetime import date, datetime
 from typing import Optional
 from bson import ObjectId
@@ -39,4 +39,12 @@ class UserResponse(UserBase):
     def validate_id(cls, v):
         if isinstance(v, ObjectId):
             return str(v)
+        return v
+    
+    @field_validator('birth_date', mode='before')
+    @classmethod
+    def validate_birth_date(cls, v):
+        # Si la base de datos devuelve un string vacío, lo convertimos en None
+        if v == "":
+            return None
         return v

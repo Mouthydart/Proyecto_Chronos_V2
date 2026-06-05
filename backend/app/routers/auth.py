@@ -20,9 +20,9 @@ security = HTTPBearer()
 #@router.post("/register", response_model=UserResponse)
 #async def register(user: UserCreate):
 @router.post("/register")
-async def register(user_data: dict): # <-- Cambiamos temporalmente a dict para que no de 404
+async def register(user: UserCreate): # <-- Cambiamos temporalmente a dict para que no de 404
     print("--- DATOS RECIBIDOS DESDE EL FRONTEND ---")
-    print(user_data)
+    print(user)
     print("-----------------------------------------")
     db = mongodb.get_database()
     users_collection = db.users
