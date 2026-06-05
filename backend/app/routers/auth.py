@@ -88,6 +88,9 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 @router.get("/me", response_model=UserResponse)
 async def get_current_user_info(current_user: dict = Depends(get_current_user)):
+    print("--- USUARIO ENCONTRADO ---")
+    print(current_user)
+    print("---------------------------------")
     return UserResponse(**current_user, id=str(current_user["_id"]))
 
 @router.put("/me", response_model=UserResponse)
