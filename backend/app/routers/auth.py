@@ -46,7 +46,7 @@ async def register(user: UserCreate): # <-- Cambiamos temporalmente a dict para 
     result = users_collection.insert_one(user_dict)
     user_dict["id"] = str(result.inserted_id)
     
-    return UserResponse(**user_dict)
+    return user_dict
 
 @router.post("/login")
 async def login(user_credentials: UserLogin):
