@@ -18,7 +18,11 @@ export const authService = {
       const { access_token } = response.data
       
       // Guardar token
-      localStorage.setItem('token', response.data.access_token)
+      localStorage.setItem('token', access_token)
+      
+      // Obtener datos completos del usuario desde el backend
+      const userData = await this.getCurrentUserData()
+      localStorage.setItem('user', JSON.stringify(userData))
       
       return response.data
     } catch (error) {
@@ -51,16 +55,18 @@ export const authService = {
   },
 
   // Verificar si está autenticado
- isAuthenticated() {
-  const token = localStorage.getItem('token')
-  if (!token) return false
-
-  const decoded = this.decodeToken(token)
-  if (!decoded) return false
-
-  const currentTime = Date.now() / 1000
-  return decoded.exp > currentTime
- },
+  isAuthenticated() {
+    const token = localStorage.getItem('token')
+    if (!token) return false
+    
+    try {
+      const decoded = this.decodeToken(token)
+      const currentTime = Date.now() / 1000
+      return decoded.exp > currentTime
+    } catch (error) {
+      return false
+    }
+  },
 
   // Obtener usuario actual
   getCurrentUser() {
