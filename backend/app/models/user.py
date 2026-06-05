@@ -44,7 +44,7 @@ class UserResponse(UserBase):
     @field_validator('birth_date', mode='before')
     @classmethod
     def validate_birth_date(cls, v):
-        # Si la base de datos devuelve un string vacío, lo convertimos a None
+        # Si la base de datos devuelve un string vacío, lo convertimos en None
         if v == "":
             return None
         return v
