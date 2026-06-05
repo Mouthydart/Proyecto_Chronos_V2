@@ -34,16 +34,16 @@ class UserResponse(UserBase):
         "from_attributes": True
     }
 
-    @field_validator('id', mode='before')
+    @field_validator('id',mode='before')
     @classmethod
-    def validate_id(cls, v):
+    def validate_id(cls,v):
         if isinstance(v, ObjectId):
             return str(v)
         return v
     
-    @field_validator('birth_date', mode='before')
+    @field_validator('birth_date',mode='before')
     @classmethod
-    def validate_birth_date(cls, v):
+    def validate_birth_date(cls,v):
         # Si la base de datos devuelve un string vacío, lo convertimos a None
         if v == "":
             return None
